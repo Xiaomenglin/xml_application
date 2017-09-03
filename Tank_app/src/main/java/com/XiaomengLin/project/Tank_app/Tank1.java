@@ -41,7 +41,7 @@ class MyPanel extends JPanel{
 		g.fill3DRect(myTank.getX()+15, myTank.getY(), 5, 30, false);
 		g.fill3DRect(myTank.getX()+5, myTank.getY()+5, 10, 20, false);
 		g.fillOval(myTank.getX()+5, myTank.getY()+10, 10, 10);
-		g.drawOval(myTank.getX()+10, myTank.getY()+15, myTank.getX()+10, myTank.getY()-3);
+		g.drawLine(myTank.getX()+10, myTank.getY()+15, myTank.getX()+10, myTank.getY()-3);
 	}
 }
 class Tank{
