@@ -45,7 +45,7 @@ class Tank{
 		this.Y=Y;
 	}
 }
-class MyTank extends Tank{
+class MyTank extends Tank{//自己的坦克
 	public MyTank(int X,int Y){
 		super(X,Y);
 	}
@@ -66,3 +66,20 @@ class MyTank extends Tank{
 		X+=sudu;
 	}
 }
+
+class DiTank extends Tank{//敌人坦克
+	public DiTank(int x,int y){
+		super(x,y);
+	}
+}
+
+class zidan{
+	int x;
+	int y;
+	public zidan(int x,int y){
+		this.x=x;
+		this.y=y;
+	}
+}
+
+ 

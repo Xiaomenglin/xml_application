@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Vector;
 
 /**
  * Tank_app
@@ -34,13 +35,25 @@ public class Tank1 extends JFrame{
 }
 class MyPanel extends JPanel implements KeyListener{
 	MyTank myTank=null;
+	
+	Vector<DiTank> dtk=new Vector<DiTank>();
+	int tksl=3;
+	
 	public MyPanel(){
-		myTank=new MyTank(100,100);
+		myTank=new MyTank(170,232);
+		
+		for(int i=0;i<tksl;i++){
+			DiTank dtank=new DiTank((i)*179+4,0);
+			dtk.add(dtank);
+		}
 	}
 	public void paint(Graphics g){
 		super.paint(g);
 		g.fillRect(0, 0, 400, 300);
-		this.drawTank(myTank.getX(), myTank.getY(), g, 3, 0);
+		this.drawTank(myTank.getX(), myTank.getY(), g, 0, 0);
+		for(int i=0;i<dtk.size();i++){
+			this.drawTank(dtk.get(i).getX(),dtk.get(i).getY(), g, 2, 1);
+		}
 //		g.setColor(Color.YELLOW);
 //		g.fill3DRect(myTank.getX(), myTank.getY(), 5, 30, false);
 //		g.fill3DRect(myTank.getX()+15, myTank.getY(), 5, 30, false);
@@ -101,7 +114,7 @@ class MyPanel extends JPanel implements KeyListener{
 		
 	}
 	
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {//按键作用--控制坦克方向
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_W){
 			this.myTank.setfangxiang(0);
