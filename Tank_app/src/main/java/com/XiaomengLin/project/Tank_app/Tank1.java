@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Tank_app
@@ -22,13 +24,15 @@ public class Tank1 extends JFrame{
     public Tank1(){
     	myPanel=new MyPanel();
     	this.add(myPanel);
+    	this.addKeyListener(myPanel);
+    	
     	this.setSize(400, 300);
     	this.setLocation(300, 280);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setVisible(true);
     }
 }
-class MyPanel extends JPanel{
+class MyPanel extends JPanel implements KeyListener{
 	MyTank myTank=null;
 	public MyPanel(){
 		myTank=new MyTank(100,100);
@@ -87,28 +91,35 @@ class MyPanel extends JPanel{
 			
 		}
 	}
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_W){
+			this.myTank.setfangxiang(0);
+			this.myTank.xiangshang();
+		}else if(e.getKeyCode()==KeyEvent.VK_A){
+			this.myTank.setfangxiang(1);
+			this.myTank.xiangzuo();
+		}else if(e.getKeyCode()==KeyEvent.VK_S){
+			this.myTank.setfangxiang(2);
+			this.myTank.xiangxia();
+		}else if(e.getKeyCode()==KeyEvent.VK_D){
+			this.myTank.setfangxiang(3);
+			this.myTank.xiangyou();
+		}
+		
+		this.repaint();
+		
+		
+	}
 }
-class Tank{
-	int X=0;int Y=0;
-	public void setX(int X){
-		this.X=X;
-	}
-	public int getX(){
-		return X;
-	}
-	public void setY(int Y){
-		this.Y=Y;
-	}
-	public int getY(){
-		return Y;
-	}
-	public Tank(int X,int Y){
-		this.X=X;
-		this.Y=Y;
-	}
-}
-class MyTank extends Tank{
-	public MyTank(int X,int Y){
-		super(X,Y);
-	}
-}
+
