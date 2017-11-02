@@ -23,7 +23,7 @@ public class Tank1 extends JFrame{
         Tank1 tank1=new Tank1();
     }
     public Tank1(){
-    	myPanel=new MyPanel();
+    	myPanel=new MyPanel();//主面板
     	this.add(myPanel);
     	this.addKeyListener(myPanel);
     	
@@ -33,7 +33,7 @@ public class Tank1 extends JFrame{
     	this.setVisible(true);
     }
 }
-class MyPanel extends JPanel implements KeyListener{
+class MyPanel extends JPanel implements KeyListener,Runnable{
 	MyTank myTank=null;
 	
 	Vector<DiTank> dtk=new Vector<DiTank>();
@@ -50,9 +50,13 @@ class MyPanel extends JPanel implements KeyListener{
 	public void paint(Graphics g){
 		super.paint(g);
 		g.fillRect(0, 0, 400, 300);
-		this.drawTank(myTank.getX(), myTank.getY(), g, 0, 0);
+		this.drawTank(myTank.getX(), myTank.getY(), g,0, 0);//绘制坦克
 		for(int i=0;i<dtk.size();i++){
 			this.drawTank(dtk.get(i).getX(),dtk.get(i).getY(), g, 2, 1);
+		}
+		if(myTank.zd!=null){//绘制子弹
+			g.setColor(Color.WHITE);
+			g.fill3DRect(myTank.zd.x, myTank.zd.y, 3, 3, false);
 		}
 //		g.setColor(Color.YELLOW);
 //		g.fill3DRect(myTank.getX(), myTank.getY(), 5, 30, false);
@@ -72,7 +76,7 @@ class MyPanel extends JPanel implements KeyListener{
 			break;
 		
 		}
-		switch(fangxiang){//坦克方向
+		switch(fangxiang){//控制坦克运动方向
 		case 0://方向：上
 			g.fill3DRect(x, y, 5, 30, false);
 			g.fill3DRect(x+15, y, 5, 30, false);
@@ -114,25 +118,36 @@ class MyPanel extends JPanel implements KeyListener{
 		
 	}
 	
-	public void keyPressed(KeyEvent e) {//按键作用--控制坦克方向
+	public void keyPressed(KeyEvent e) {//按键监听--控制坦克方向
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_W){
-			this.myTank.setfangxiang(0);
+			this.myTank.setfangxiang(0);//按W向上
 			this.myTank.xiangshang();
 		}else if(e.getKeyCode()==KeyEvent.VK_A){
-			this.myTank.setfangxiang(1);
+			this.myTank.setfangxiang(1);//按A向左
 			this.myTank.xiangzuo();
 		}else if(e.getKeyCode()==KeyEvent.VK_S){
-			this.myTank.setfangxiang(2);
+			this.myTank.setfangxiang(2);//按S向下
 			this.myTank.xiangxia();
 		}else if(e.getKeyCode()==KeyEvent.VK_D){
-			this.myTank.setfangxiang(3);
+			this.myTank.setfangxiang(3);//按D向右
 			this.myTank.xiangyou();
+		}
+		if(e.getKeyCode()==KeyEvent.VK_J){//按J发射子弹
+			this.myTank.fszd();
 		}
 		
 		this.repaint();
 		
-		
+	}
+	public void run(){
+		while(true){
+			try{
+				Thread.sleep(100);
+			}
+			catch(Exception e){}
+			this.repaint();
+		}
 	}
 }
 
