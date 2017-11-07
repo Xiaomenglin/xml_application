@@ -27,6 +27,9 @@ public class Tank1 extends JFrame{
     	this.add(myPanel);
     	this.addKeyListener(myPanel);
     	
+    	Thread t=new Thread(myPanel);//###重点启动线程
+		t.start();
+    	
     	this.setSize(400, 300);
     	this.setLocation(300, 280);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +53,7 @@ class MyPanel extends JPanel implements KeyListener,Runnable{
 	public void paint(Graphics g){
 		super.paint(g);
 		g.fillRect(0, 0, 400, 300);
-		this.drawTank(myTank.getX(), myTank.getY(), g,0, 0);//绘制坦克
+		this.drawTank(myTank.getX(), myTank.getY(), g,myTank.fangxiang, 0);//绘制坦克
 		for(int i=0;i<dtk.size();i++){
 			this.drawTank(dtk.get(i).getX(),dtk.get(i).getY(), g, 2, 1);
 		}
@@ -133,10 +136,11 @@ class MyPanel extends JPanel implements KeyListener,Runnable{
 			this.myTank.setfangxiang(3);//按D向右
 			this.myTank.xiangyou();
 		}
+		
+		
 		if(e.getKeyCode()==KeyEvent.VK_J){//按J发射子弹
 			this.myTank.fszd();
 		}
-		
 		this.repaint();
 		
 	}
@@ -145,7 +149,9 @@ class MyPanel extends JPanel implements KeyListener,Runnable{
 			try{
 				Thread.sleep(100);
 			}
-			catch(Exception e){}
+			catch(Exception e){
+				
+			}
 			this.repaint();
 		}
 	}

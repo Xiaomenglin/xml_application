@@ -1,5 +1,7 @@
 package com.XiaomengLin.project.Tank_app;
 
+import java.lang.Thread;
+
 /**
  * Tank_app--source
  *Author:XiaomengLin
@@ -46,7 +48,7 @@ class Tank{
 	}
 }
 class MyTank extends Tank {//自己的坦克
-	zidan zd=null;
+	Zidan zd=null;
 	
 	public MyTank(int X,int Y){
 		super(X,Y);
@@ -55,16 +57,16 @@ class MyTank extends Tank {//自己的坦克
 	public void fszd(){//发射子弹
 		switch(this.fangxiang){
 		case 0:
-			zd=new zidan(X+10,Y,0);
+			zd=new Zidan(X+10,Y,0);
 			break;
 		case 1:
-			zd=new zidan(X,Y+10,1);
+			zd=new Zidan(X,Y+10,1);
 			break;
 		case 2:
-			zd=new zidan(X+10,Y+30,2);
+			zd=new Zidan(X+10,Y+30,2);
 			break;
 		case 3:
-			zd=new zidan(X+30,Y+10,3);
+			zd=new Zidan(X+30,Y+10,3);
 			break;
 		}
 		Thread t=new Thread(zd);
@@ -94,19 +96,20 @@ class DiTank extends Tank{//敌人坦克
 	}
 }
 
-class zidan implements Runnable{
+class Zidan implements Runnable{
 	int x;
 	int y;
 	int fangxiang;
 	int sudu=2;
-	public zidan(int x,int y,int fangxiang){
+	
+	public Zidan(int x,int y,int fangxiang){
 		this.x=x;
 		this.y=y;
 		this.fangxiang=fangxiang;
 	}
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true){//凡是线程下面的死循环都要有个睡眠
+		while(true){//凡是线程下面的死循环里都要有个睡眠
 			try{
 				Thread.sleep(50);
 			}
@@ -125,6 +128,7 @@ class zidan implements Runnable{
 				break;
 			case 3:
 				x+=sudu;
+				break;
 			}
 		}
 	}
