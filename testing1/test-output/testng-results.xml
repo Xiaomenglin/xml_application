@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="67" started-at="2017-04-23T00:40:51Z" finished-at="2017-04-23T00:40:51Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="67" started-at="2017-04-23T00:40:51Z" finished-at="2017-04-23T00:40:51Z">
+      <class name="testing1.testng1">
+        <test-method status="PASS" signature="day2()[pri:0, instance:testing1.testng1@7ac7a4e4]" name="day2" is-config="true" duration-ms="14" started-at="2017-04-23T08:40:51Z" finished-at="2017-04-23T08:40:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- day2 -->
+        <test-method status="PASS" signature="day1()[pri:0, instance:testing1.testng1@7ac7a4e4]" name="day1" duration-ms="12" started-at="2017-04-23T08:40:51Z" finished-at="2017-04-23T08:40:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- day1 -->
+        <test-method status="PASS" signature="day3()[pri:0, instance:testing1.testng1@7ac7a4e4]" name="day3" is-config="true" duration-ms="2" started-at="2017-04-23T08:40:51Z" finished-at="2017-04-23T08:40:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- day3 -->
+      </class> <!-- testing1.testng1 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
