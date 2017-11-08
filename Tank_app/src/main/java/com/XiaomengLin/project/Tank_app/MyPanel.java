@@ -1,42 +1,19 @@
 package com.XiaomengLin.project.Tank_app;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Vector;
 
+import javax.swing.JPanel;
+
 /**
- * Tank_app
+ * Tank_app--MyPanel
  *Author:XiaomengLin
- *Since:2017/09/03
+ *Since:2017/11/08
  */
-public class Tank1 extends JFrame{
-	MyPanel myPanel=null;
-	
-	
-	
-    public static void main( String[] args )
-    {
-        Tank1 tank1=new Tank1();
-    }
-    public Tank1(){
-    	myPanel=new MyPanel();//主面板
-    	this.add(myPanel);
-    	this.addKeyListener(myPanel);
-    	
-    	Thread t=new Thread(myPanel);//###重点启动线程
-		t.start();
-    	
-    	this.setSize(400, 300);
-    	this.setLocation(300, 280);
-    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setVisible(true);
-    }
-}
-class MyPanel extends JPanel implements KeyListener,Runnable{
+class MyPanel extends JPanel implements KeyListener,Runnable{//我的面板
 	MyTank myTank=null;
 	
 	Vector<DiTank> dtk=new Vector<DiTank>();
@@ -52,15 +29,19 @@ class MyPanel extends JPanel implements KeyListener,Runnable{
 	}
 	public void paint(Graphics g){
 		super.paint(g);
-		g.fillRect(0, 0, 400, 300);
+		g.fillRect(0, 0, 400, 300);//主画布大小
 		this.drawTank(myTank.getX(), myTank.getY(), g,myTank.fangxiang, 0);//绘制坦克
 		for(int i=0;i<dtk.size();i++){
 			this.drawTank(dtk.get(i).getX(),dtk.get(i).getY(), g, 2, 1);
 		}
-		if(myTank.zd!=null){//绘制子弹
-			g.setColor(Color.WHITE);
-			g.fill3DRect(myTank.zd.x, myTank.zd.y, 3, 3, false);
+		for(int i=0;i<myTank.aa.size();i++){
+			Zidan zd=myTank.aa.get(i);//装载子弹
+			
+		if(zd!=null&&zd.shengming==true){//绘制子弹
+			g.setColor(Color.white);
+			g.fill3DRect(zd.x, zd.y, 3, 3, false);
 		}
+	}
 //		g.setColor(Color.YELLOW);
 //		g.fill3DRect(myTank.getX(), myTank.getY(), 5, 30, false);
 //		g.fill3DRect(myTank.getX()+15, myTank.getY(), 5, 30, false);
@@ -156,4 +137,3 @@ class MyPanel extends JPanel implements KeyListener,Runnable{
 		}
 	}
 }
-
