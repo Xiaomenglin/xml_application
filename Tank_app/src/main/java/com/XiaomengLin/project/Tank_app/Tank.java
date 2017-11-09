@@ -11,6 +11,8 @@ class Tank{//坦克类
 	int X=0;int Y=0;
 	int fangxiang=0;
 	int sudu=1;
+	boolean shengming=true;
+	
 	public void setX(int X){
 		this.X=X;
 	}

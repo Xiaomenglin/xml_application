@@ -5,7 +5,9 @@ package com.XiaomengLin.project.Tank_app;
  *Since:2017/11/08
  */
 class DiTank extends Tank{//敌人的坦克类
+	
 	public DiTank(int x,int y){
 		super(x,y);
 	}
+	
 }

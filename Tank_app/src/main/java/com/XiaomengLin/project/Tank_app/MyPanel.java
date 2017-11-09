@@ -41,6 +41,9 @@ class MyPanel extends JPanel implements KeyListener,Runnable{//我的面板
 			g.setColor(Color.white);
 			g.fill3DRect(zd.x, zd.y, 3, 3, false);
 		}
+		if(zd.shengming==false){
+			myTank.aa.remove(zd);
+		}
 	}
 //		g.setColor(Color.YELLOW);
 //		g.fill3DRect(myTank.getX(), myTank.getY(), 5, 30, false);
@@ -120,9 +123,30 @@ class MyPanel extends JPanel implements KeyListener,Runnable{//我的面板
 		
 		
 		if(e.getKeyCode()==KeyEvent.VK_J){//按J发射子弹
-			this.myTank.fszd();
+			if(this.myTank.aa.size()<8){
+				
+			    this.myTank.fszd();
+			}
 		}
 		this.repaint();
+		
+	}
+	public void jzdf(Zidan zd,DiTank dt){//击中敌方，子弹与敌坦克比较
+		switch(dt.fangxiang){
+		case 0:
+		case 2:
+			if(zd.x>dt.Y && zd.x<dt.X+20 && zd.y>dt.Y && zd.y<dt.Y+30){
+				zd.shengming=false;
+				dt.shengming=false;
+			}
+			break;
+		case 1:
+		case 3:
+			if(zd.x>dt.Y && zd.x<dt.X+30 && zd.y>dt.Y && zd.y<dt.Y+20){
+				zd.shengming=false;
+				dt.shengming=false;
+			}
+		}
 		
 	}
 	public void run(){
@@ -133,7 +157,22 @@ class MyPanel extends JPanel implements KeyListener,Runnable{//我的面板
 			catch(Exception e){
 				
 			}
+			for(int i=0;i<myTank.aa.size();i++){//这个二层循环的目的，是让每个子弹与每个坦克比较
+				Zidan zd=myTank.aa.get(i);
+				
+				if(zd.shengming){
+					
+					for(int j=0;j<dtk.size();j++){
+						
+						DiTank dt=dtk.get(j);
+						
+						if(dt.shengming){
+							this.jzdf(zd, dt);
+					}
+				}
+			}
 			this.repaint();
 		}
 	}
 }
+	}

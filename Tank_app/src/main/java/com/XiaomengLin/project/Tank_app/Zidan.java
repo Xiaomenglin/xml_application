@@ -8,9 +8,9 @@ package com.XiaomengLin.project.Tank_app;
 class Zidan implements Runnable{//子弹类
 	int x;
 	int y;
-	int fangxiang;
-	int sudu=2;
-	boolean shengming=true;
+	int fangxiang;//方向
+	int sudu=2;//速度
+	boolean shengming=true;//生命
 	
 	public Zidan(int x,int y,int fangxiang){
 		this.x=x;
